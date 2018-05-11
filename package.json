@@ -1,0 +1,16 @@
+{
+  "name": "code-reader",
+  "main": "./lib/code-reader",
+  "version": "0.0.0",
+  "description": "A short description of your package",
+  "keywords": [],
+  "activationCommands": {
+    "atom-workspace": "code-reader:toggle"
+  },
+  "repository": "https://github.com/atom/code-reader",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {}
+}

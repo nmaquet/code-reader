@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Toggle code-reader",
+        "command": "code-reader:toggle"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "code-reader",
+          "submenu": [
+            {
+              "label": "Toggle",
+              "command": "code-reader:toggle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

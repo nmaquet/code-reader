@@ -1,5 +1,11 @@
 {
   "atom-workspace": {
-    "ctrl-alt-o": "code-reader:toggle"
+    "ctrl-alt-o": "code-reader:add-static-markers"
+  },
+  "atom-text-editor": {
+    "cmd-`": "code-reader:color-selection-clear",
+    "cmd-1": "code-reader:color-selection-green",
+    "cmd-2": "code-reader:color-selection-blue",
+    "cmd-3": "code-reader:color-selection-red"
   }
 }

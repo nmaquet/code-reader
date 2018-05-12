@@ -15,8 +15,8 @@
           "label": "code-reader",
           "submenu": [
             {
-              "label": "Toggle",
-              "command": "code-reader:toggle"
+              "label": "Add Static Markers",
+              "command": "code-reader:add-static-markers"
             }
           ]
         }

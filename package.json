@@ -9,5 +9,13 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "providedServices": {
+    "atom.file-icons": {
+      "description": "File Icons for use in Tree View",
+      "versions": {
+        "1.0.0": "provideFileIconsService"
+      }
+    }
+  }
 }

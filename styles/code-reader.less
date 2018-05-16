@@ -17,3 +17,41 @@ atom-text-editor .gutter .line-number.cursor-line {
     background-color: @red-color;
   }
 }
+
+.icon-code-reader::before {
+  font-family: "Verdana";
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  text-decoration: none;
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  content: "◎";
+}
+
+.icon-code-reader {
+  &.green::before {
+    color: @green-color;
+  }
+  &.green.mostly-colored::before {
+    color: @green-color;
+    content: "◉";
+  }
+  &.red::before {
+    color: @red-color;
+  }
+  &.red.mostly-colored::before {
+    color: @red-color;
+    content: "◉";
+  }
+  &.blue::before {
+    color: @blue-color;
+  }
+  &.blue.mostly-colored::before {
+    color: @blue-color;
+    content: "◉";
+  }
+}

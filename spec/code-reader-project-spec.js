@@ -203,4 +203,50 @@ describe("CodeReaderProject", () => {
     expect(instructions.deletions).toEqual([[1, 10], [20, 30]]);
     expect(instructions.additions).toEqual([[1, 30]]);
   });
+
+  it("should be capable of doing a 3-way merge <  >[]<  >", () => {
+    const project = CodeReaderProject.loadFromString(TEST_DATA_1);
+    project.addRange(".gitignore", "red", [1, 10]);
+    project.addRange(".gitignore", "red", [20, 30]);
+    const instructions = project.addRange(".gitignore", "red", [11, 19]);
+    expect(project.getRanges(".gitignore", "red")).toEqual([[1, 30]]);
+    expect(instructions.deletions).toEqual([[1, 10], [20, 30]]);
+    expect(instructions.additions).toEqual([[1, 30]]);
+  });
+
+  it("should be able to set the line count", () => {
+    const project = CodeReaderProject.loadFromString(TEST_DATA_1);
+    project.setLineCount(".gitignore", 20);
+    project.setLineCount("does_not_exist", 42);
+    expect(project.data[".gitignore"]["_lineCount"]).toEqual(20);
+    expect(project.data["does_not_exist"]["_lineCount"]).toEqual(42);
+  });
+
+  it("should be able to get the line count", () => {
+    const project = CodeReaderProject.loadFromString(TEST_DATA_1);
+    project.data[".gitignore"]["_lineCount"] = 42;
+    expect(project.getLineCount(".gitignore")).toEqual(42);
+    expect(project.getLineCount("does_not_exist")).toEqual(0);
+  });
+
+  it("should be able to tell you if a colour is present", () => {
+    const project = CodeReaderProject.loadFromString(TEST_DATA_1);
+    expect(project.hasColor("lib/code-reader.js", "green")).toEqual(true);
+    expect(project.hasColor("lib/code-reader.js", "red")).toEqual(true);
+    expect(project.hasColor("lib/code-reader.js", "blue")).toEqual(true);
+    expect(project.hasColor(".gitignore", "green")).toEqual(true);
+    expect(project.hasColor(".gitignore", "red")).toEqual(false);
+    expect(project.hasColor(".gitignore", "blue")).toEqual(false);
+  });
+
+  it("should be able to tell you if it is mostly coloured", () => {
+    const project = CodeReaderProject.loadFromString(TEST_DATA_1);
+    project.setLineCount("new_file", 100);
+    project.addRange("new_file", "green", [1, 20]);
+    expect(project.isMostlyColored("new_file")).toEqual(false);
+    project.addRange("new_file", "red", [21, 50]);
+    expect(project.isMostlyColored("new_file")).toEqual(false);
+    project.addRange("new_file", "blue", [51, 85]);
+    expect(project.isMostlyColored("new_file")).toEqual(true);
+  });
 });
